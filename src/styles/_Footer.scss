@@ -1,0 +1,26 @@
+footer {
+    background-color: var(--header-background-color);
+    margin-top: 2rem;
+}
+
+.footer-content {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    height: 7rem;
+}
+
+.footer-content .left-side {
+    display: flex;
+    align-items: center;
+}
+
+.left-side{
+    height: 100%;
+}
+
+.left-side img {
+    height: 100%;
+}

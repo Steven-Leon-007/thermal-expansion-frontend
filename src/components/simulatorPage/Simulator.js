@@ -4,10 +4,10 @@ import Footer from '../Footer'
 import Header from '../Header'
 
 
-const Simulator = () => {
+const Simulator = ({isDark, setIsDark}) => {
     return (
         <HelmetProvider>
-            <div className="App">
+            <div className="App" data-theme="dark">
                 <Helmet>
                     <title>Simulator - Thermal Expansion Simulator by UPTC</title>
                 </Helmet>
