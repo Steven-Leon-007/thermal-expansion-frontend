@@ -17,10 +17,24 @@ footer {
     align-items: center;
 }
 
-.left-side{
+.left-side, .right-side {
     height: 100%;
+    width: 60%;
+}
+
+.right-side{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 40%;
 }
 
 .left-side img {
     height: 100%;
+}
+
+.right-side img {   
+    width: 60%;
+    margin: 0 auto;
+    display: block;
 }

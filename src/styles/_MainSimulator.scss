@@ -1,0 +1,26 @@
+.nav_expansion_picker {
+    background-color: #323232;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav_expansion_picker button {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--buttons-background);
+    color: var(--primary-text-color);
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.nav_expansion_picker button:hover {
+    background-color: var(--buttons-hover-background);
+}
+
+.simulator-container {
+    display: flex;
+}
+
+.nav-expansion-picker{
+    background-color: var(--containers-background-color);
+}

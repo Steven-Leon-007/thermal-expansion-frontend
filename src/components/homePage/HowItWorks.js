@@ -2,7 +2,7 @@ import React from 'react'
 
 const HowItWorks = () => {
     return (
-        <div className="explanation-container">
+        <div className="explanation-container" id='how-it-works'>
             <h2>¿Como funciona?</h2>
             <div className="explanation-flex">
                 <div className="column-content">

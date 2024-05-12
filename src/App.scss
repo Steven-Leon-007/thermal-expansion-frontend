@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 :root {
     --background-color: #b6b6b6;
     --header-background-color: #979797;
@@ -61,6 +65,10 @@ a {
 
 li {
     list-style: none;
+}
+
+button{
+    cursor: pointer;
 }
 
 @import "styles/Header";

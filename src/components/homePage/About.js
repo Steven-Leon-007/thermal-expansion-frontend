@@ -2,7 +2,7 @@ import React from 'react'
 
 const About = () => {
     return (
-        <div className="about-section">
+        <div className="about-section" id='about'>
             <h2>Acerca del Simulador</h2>
             <div className="about-flex">
                 <div className="about-row">
