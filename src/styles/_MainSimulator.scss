@@ -23,4 +23,25 @@
 
 .nav-expansion-picker{
     background-color: var(--containers-background-color);
+    padding: 1rem;
 }
+
+.material-list .material{
+    cursor: pointer;
+    margin: 0.5rem 0;
+    transition: color 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+.material-list .selected{
+    padding-left: 1rem;
+    color: var(--element-text-hover);
+    transition: padding 0.3s ease-in-out;
+}
+
+.material-list .material:hover{
+    color: var(--element-text-hover);
+}
+
+// .cylinder-svg{
+//     transform: rotate(90deg) translateY(-200px);
+// }

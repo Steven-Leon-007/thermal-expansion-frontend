@@ -7,6 +7,7 @@ import ExpansionHolder from './ExpansionHolder';
 
 const MainSimulator = () => {
     const [materials, setMaterials] = useState([]);
+    const [materialPicked, setMaterialPicked] = useState(null);
 
     useEffect(() => {
         fetch('http://localhost:8080/getSolidMaterials')
@@ -20,7 +21,7 @@ const MainSimulator = () => {
     }, []);
 
     const onSelectMaterial = (material) => {
-        console.log(material);
+        setMaterialPicked(material);
     }
 
     return (
@@ -28,7 +29,7 @@ const MainSimulator = () => {
             <NavExpansionPicker />
             <div className="simulator-container">
                 <ElementsPicker materials={materials} onSelectMaterial={onSelectMaterial} />
-                <ExpansionHolder />
+                <ExpansionHolder materialPicked={materialPicked}/>
                 <ResultsDisplay />
             </div>
         </div>
