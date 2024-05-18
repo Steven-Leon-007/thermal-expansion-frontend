@@ -19,29 +19,169 @@
 
 .simulator-container {
     display: flex;
+    border-bottom: 1px solid var(--containers-background-color);
 }
 
-.nav-expansion-picker{
+.info-non-selected{
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 1rem;
+
+}
+
+.nav-expansion-picker, .results-container {
     background-color: var(--containers-background-color);
     padding: 1rem;
 }
 
-.material-list .material{
-    cursor: pointer;
-    margin: 0.5rem 0;
-    transition: color 0.3s ease-in-out, padding 0.3s ease-in-out;
+.results-container{
+    margin: 1rem;
+    margin-right: 2rem;
+    display: flex;
+    padding: 1rem 2rem;
+    flex-direction: column;
+    align-self: flex-start;
+    position: sticky;
+    top: 30px;
+    line-height: 2rem;
 }
 
-.material-list .selected{
+.results-container h3{
+    text-align: center;
+}
+
+
+.simulator-container{
+    align-items: center;
+}
+
+.material-list .material {
+    cursor: pointer;
+    margin: 0.5rem 0;
+    transition:
+        color 0.3s ease-in-out,
+        padding 0.3s ease-in-out;
+}
+
+.material-list-responsive{
+    display: none;
+}
+
+.expansion-holder {
+    width: 80%;
+    margin: 1rem auto;
+    padding: 0 1rem;
+}
+
+.cylinder-svg {
+    width: 250px;
+    height: 300px;
+}
+
+.material-list .selected {
     padding-left: 1rem;
     color: var(--element-text-hover);
     transition: padding 0.3s ease-in-out;
 }
 
-.material-list .material:hover{
+.material-list .material:hover {
     color: var(--element-text-hover);
 }
 
-// .cylinder-svg{
-//     transform: rotate(90deg) translateY(-200px);
-// }
+#temperature-slider {
+    writing-mode: vertical-lr;
+    direction: rtl;
+    vertical-align: bottom;
+}
+
+.display-expansion-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slider-container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+}
+
+.slider-component {
+    width: 100%;
+}
+
+.simulator-container input {
+    width: 80%;
+}
+
+.slider-container:nth-child(1) {
+    position: absolute;
+    top: 40%;
+    height: 40%;
+}
+.slider-container:nth-child(1) input {
+    height: 80%;
+}
+
+.calc-expansion {
+    width: 80%;
+    padding: 1rem;
+    margin: 1rem auto;
+    display: block;
+    background-color: var(--buttons-background);
+    color: var(--primary-text-color);
+    font-weight: bold;
+    border: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.calc-expansion:hover {
+    background-color: var(--buttons-hover-background);
+}
+
+@media screen and (max-width: 1100px) {
+    .slider-container:nth-child(1) {
+        position: relative;
+    }
+    #temperature-slider {
+        writing-mode: horizontal-tb;
+        direction: unset;
+        vertical-align: unset;
+    }
+}
+
+@media screen and (max-width: 900px) {
+
+    .simulator-container{
+        flex-direction: column;
+        overflow-x: hidden;
+    }
+
+    .elements-picker{
+        width: 100%;
+        text-align: center;
+    }
+
+    .material-list{
+        display: none;
+    }
+    
+    .material-list-responsive{
+        display: inline-block;
+    }
+
+    .material-list-responsive select{
+        margin: 1rem auto;
+        padding: 0.5rem;
+        width: 100%;
+    }
+
+    .results-container{
+        width: 100%;
+        margin: 0.5rem auto 0;
+        align-items: center;
+    }
+    
+}

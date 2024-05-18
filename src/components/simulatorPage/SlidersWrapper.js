@@ -11,7 +11,7 @@ const SlidersWrapper = ({ onValuesChange, materialPicked }) => {
             setLength(500);
             onValuesChange({ temperature: 0, length: 500 });
         }
-    }, [materialPicked, minTemperature]);
+    }, [materialPicked, minTemperature, onValuesChange]);
 
     const handleTemperatureChange = (event) => {
         const newTemperature = Number(event.target.value);
@@ -23,13 +23,15 @@ const SlidersWrapper = ({ onValuesChange, materialPicked }) => {
         const newLength = Number(event.target.value);
         setLength(newLength);
         onValuesChange({ temperature, length: newLength });
-      };
-    
+    };
+
 
     return (
         <div className="slider-component">
             <div className="slider-container">
-                <label htmlFor="temperature-slider">Temperatura: {temperature}°C</label>
+                <label htmlFor="temperature-slider">Temperatura Inicial (Ti)<br />
+                    {temperature}°C
+                </label>
                 <input
                     id="temperature-slider"
                     type="range"
@@ -40,11 +42,13 @@ const SlidersWrapper = ({ onValuesChange, materialPicked }) => {
                 />
             </div>
             <div className="slider-container">
-                <label htmlFor="length-slider">Longitud: {length} m</label>
+                <label htmlFor="length-slider">Longitud Inicial (Li)<br />
+                    {length} m
+                </label>
                 <input
                     id="length-slider"
                     type="range"
-                    min="1"
+                    min="10"
                     max="1000"
                     value={length}
                     onChange={handleLengthChange}

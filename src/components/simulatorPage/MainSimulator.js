@@ -9,6 +9,7 @@ const MainSimulator = () => {
     const [materials, setMaterials] = useState([]);
     const [materialPicked, setMaterialPicked] = useState(null);
 
+
     useEffect(() => {
         fetch('http://localhost:8080/getSolidMaterials')
             .then(response => response.json())
@@ -30,7 +31,7 @@ const MainSimulator = () => {
             <div className="simulator-container">
                 <ElementsPicker materials={materials} onSelectMaterial={onSelectMaterial} />
                 <ExpansionHolder materialPicked={materialPicked}/>
-                <ResultsDisplay />
+                <ResultsDisplay materialPicked={materialPicked}/>
             </div>
         </div>
     );

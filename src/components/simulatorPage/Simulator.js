@@ -4,6 +4,7 @@ import Footer from '../Footer'
 import Header from '../Header'
 import MainSimulator from './MainSimulator';
 import '../../styles/_MainSimulator.scss';
+import About from '../About';
 
 
 const Simulator = ({isDark, setIsDark}) => {
@@ -15,6 +16,7 @@ const Simulator = ({isDark, setIsDark}) => {
                 </Helmet>
                 <Header isDark={isDark} setIsDark={setIsDark} />
                 <MainSimulator />
+                <About />
                 <Footer />
             </div>
         </HelmetProvider>
