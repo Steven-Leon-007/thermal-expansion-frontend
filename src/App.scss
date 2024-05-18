@@ -9,18 +9,19 @@ html{
 }
 
 :root {
-    --background-color: #b6b6b6;
-    --header-background-color: #979797;
+    --background-color: #e6e6e6;
+    --header-background-color: #d1d1d1;
     --primary-text-color: #0e0e0e;
-    --containers-background-color: #a18ba3;
+    --containers-background-color: #c3a3c6;
     --foreground-color: #2ebb2e;
     --secondary-text-color: #f4f4f4;
-    --buttons-background: #99349a;
+    --buttons-background: #802381;
     --buttons-hover-background: #772179;
     --toggle-bg: #f0eb9d;
     --toggle-fg: #ffd000;
     --text-hover-color: #661482;
-    --element-text-hover: #15e063;
+    --element-text-hover: #2b63c4;
+    --inputs-background-color: #9b4eb5;
 
 }
 
@@ -37,6 +38,7 @@ html{
     --toggle-fg: #00a6ff;
     --text-hover-color: #ecb8d5;
     --element-text-hover: #15e063;
+    --inputs-background-color: #9743b3;
 
 }
 
@@ -54,6 +56,10 @@ div {
     font-family: "Lato", sans-serif;
     font-weight: 400;
     font-style: normal;
+}
+
+button{
+    color: var(--primary-text-color);
 }
 
 h1 {

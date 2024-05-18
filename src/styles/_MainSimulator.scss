@@ -8,7 +8,6 @@
     width: 100%;
     padding: 1rem;
     background-color: var(--buttons-background);
-    color: var(--primary-text-color);
     font-weight: bold;
     transition: background-color 0.3s ease-in-out;
 }
@@ -22,20 +21,20 @@
     border-bottom: 1px solid var(--containers-background-color);
 }
 
-.info-non-selected{
+.info-non-selected {
     width: 100%;
     text-align: center;
     font-size: 1.5rem;
     padding: 1rem;
-
 }
 
-.nav-expansion-picker, .results-container {
+.nav-expansion-picker,
+.results-container {
     background-color: var(--containers-background-color);
     padding: 1rem;
 }
 
-.results-container{
+.results-container {
     margin: 1rem;
     margin-right: 2rem;
     display: flex;
@@ -47,12 +46,11 @@
     line-height: 2rem;
 }
 
-.results-container h3{
+.results-container h3 {
     text-align: center;
 }
 
-
-.simulator-container{
+.simulator-container {
     align-items: center;
 }
 
@@ -64,7 +62,7 @@
         padding 0.3s ease-in-out;
 }
 
-.material-list-responsive{
+.material-list-responsive {
     display: none;
 }
 
@@ -89,7 +87,7 @@
     color: var(--element-text-hover);
 }
 
-#temperature-slider {
+#temperature-slider, #final-temperature-slider {
     writing-mode: vertical-lr;
     direction: rtl;
     vertical-align: bottom;
@@ -114,14 +112,21 @@
 
 .simulator-container input {
     width: 80%;
+    margin-bottom: 0.5rem;
+    accent-color: var(--inputs-background-color);
 }
 
-.slider-container:nth-child(1) {
+.slider-container:nth-child(-n + 2) {
     position: absolute;
     top: 40%;
     height: 40%;
 }
-.slider-container:nth-child(1) input {
+
+.final-temperature {
+    right: 25%;
+}
+
+.slider-container:nth-child(-n + 2) input {
     height: 80%;
 }
 
@@ -131,7 +136,6 @@
     margin: 1rem auto;
     display: block;
     background-color: var(--buttons-background);
-    color: var(--primary-text-color);
     font-weight: bold;
     border: none;
     transition: background-color 0.3s ease-in-out;
@@ -141,47 +145,60 @@
     background-color: var(--buttons-hover-background);
 }
 
+.results-container input {
+    padding: 0.5rem;
+    border: none;
+    background-color: var(--inputs-background-color);
+    color: var(--primary-text-color);
+}
+
 @media screen and (max-width: 1100px) {
-    .slider-container:nth-child(1) {
+    .slider-container:nth-child(-n + 2) {
         position: relative;
     }
-    #temperature-slider {
+
+    .slider-container{
+        margin: 1rem auto;
+    }
+
+    #temperature-slider, #final-temperature-slider {
         writing-mode: horizontal-tb;
         direction: unset;
         vertical-align: unset;
     }
+    .final-temperature {
+        right: unset;
+    }
 }
 
 @media screen and (max-width: 900px) {
-
-    .simulator-container{
+    .simulator-container {
         flex-direction: column;
         overflow-x: hidden;
     }
 
-    .elements-picker{
+    .elements-picker {
         width: 100%;
         text-align: center;
     }
 
-    .material-list{
+    .material-list {
         display: none;
     }
-    
-    .material-list-responsive{
+
+    .material-list-responsive {
         display: inline-block;
     }
 
-    .material-list-responsive select{
+    .material-list-responsive select {
         margin: 1rem auto;
         padding: 0.5rem;
         width: 100%;
     }
 
-    .results-container{
+    .results-container {
         width: 100%;
         margin: 0.5rem auto 0;
         align-items: center;
     }
-    
 }

@@ -1,30 +1,66 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import SlidersWrapper from './SlidersWrapper';
 import SolidWrapper from './SolidWrapper';
 
-const ExpansionHolder = ({ materialPicked }) => {
-  const [length, setLength] = useState(500); 
+const ExpansionHolder = ({ materialPicked, dataRetrievedMaterial }) => {
+  const [length, setLength] = useState(500);
+  const [temperature, setTemperature] = useState(0);
+  const [finalTemperature, setFinalTemperature] = useState(0);
 
-
-  const onValuesChange = useCallback(({ length }) => {
-    setLength(length); 
+  const onValuesChange = useCallback(({ temperature, finalTemperature, length }) => {
+    setLength(length);
+    setTemperature(temperature);
+    setFinalTemperature(finalTemperature);
   }, []);
 
+  useEffect(() => {
+    dataRetrievedMaterial({ temperature, finalTemperature, length });
+  }, [temperature, finalTemperature, length, dataRetrievedMaterial]);
 
   if (!materialPicked) {
     return <div className='info-non-selected'>Selecciona un material para continuar.</div>;
   }
-  const { maxTemperature, minTemperature, texturePath } = materialPicked;
 
+  const { maxTemperature, minTemperature, texturePath, name } = materialPicked;
 
+  const originalHeight = 500;
+  const scaleX = length / originalHeight;
 
-  const originalHeight = 500;  
-  const scaleX = length / originalHeight;  
+  const handleCalculateExpansion = async () => {
+    const materialToCalc = {
+      solidMaterialName: name,
+      solidInitialTemperature: temperature,
+      solidFinalTemperature: finalTemperature,
+      solidInitialDimension: length,
+      expansionType: "LINEAR"
+    };
+
+    console.log(materialToCalc);
+
+    try {
+      const response = await fetch('http://localhost:8080/calculateExpansionSystem', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(materialToCalc)
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Result:', result);
+      } else {
+        console.error('Failed to calculate expansion');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   return (
     <div className="expansion-holder">
       <div className="display-expansion-controls">
-        <SolidWrapper texturePath={texturePath} scaleX={scaleX}/>
+        <SolidWrapper texturePath={texturePath} scaleX={scaleX} />
         <SlidersWrapper
           maxTemperature={maxTemperature}
           minTemperature={minTemperature}
@@ -32,7 +68,7 @@ const ExpansionHolder = ({ materialPicked }) => {
           materialPicked={materialPicked}
         />
       </div>
-        <button className="calc-expansion">Calcular Expansión</button>
+      <button className="calc-expansion" onClick={handleCalculateExpansion}>Calcular Expansión</button>
     </div>
   );
 };
