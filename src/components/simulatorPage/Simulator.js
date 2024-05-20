@@ -16,7 +16,7 @@ const Simulator = ({isDark, setIsDark}) => {
                 </Helmet>
                 <Header isDark={isDark} setIsDark={setIsDark} />
                 <MainSimulator />
-                <About />
+                <About isDark={isDark}/>
                 <Footer />
             </div>
         </HelmetProvider>

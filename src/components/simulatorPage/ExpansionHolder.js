@@ -2,12 +2,13 @@ import React, { useCallback, useState, useEffect } from 'react';
 import SlidersWrapper from './SlidersWrapper';
 import SolidWrapper from './SolidWrapper';
 
-const ExpansionHolder = ({ materialPicked, dataRetrievedMaterial, setMaterialResult }) => {
+const ExpansionHolder = ({ materialPicked, dataRetrievedMaterial, setMaterialResult, typeExpansion }) => {
   const [length, setLength] = useState(500);
   const [temperature, setTemperature] = useState(0);
   const [finalTemperature, setFinalTemperature] = useState(0);
   const [calculatedLength, setCalculatedLength] = useState(0);
   const [calculatedScale, setCalculatedScale] = useState(length / 500);
+
 
   const onValuesChange = useCallback(({ temperature, finalTemperature, length }) => {
     setLength(length);
@@ -20,10 +21,14 @@ const ExpansionHolder = ({ materialPicked, dataRetrievedMaterial, setMaterialRes
   }, [temperature, finalTemperature, length, dataRetrievedMaterial]);
 
   useEffect(() => {
-    setCalculatedScale((length + calculatedLength) / 500);
+    setCalculatedScale((Number(length) + Number(calculatedLength)) / 500);
   }, [calculatedLength]);
 
-  if (!materialPicked) {
+
+  if (!typeExpansion) {
+    return <div className='info-non-selected'>Selecciona un tipo de expansión para continuar.</div>;
+
+  } else if (!materialPicked) {
     return <div className='info-non-selected'>Selecciona un material para continuar.</div>;
   }
 
@@ -33,16 +38,17 @@ const ExpansionHolder = ({ materialPicked, dataRetrievedMaterial, setMaterialRes
   const scaleX = length / originalHeight;
 
   const handleCalculateExpansion = async () => {
+    console.log(typeExpansion);
     const materialToCalc = {
       solidMaterialName: name,
       solidInitialTemperature: temperature,
       solidFinalTemperature: finalTemperature,
       solidInitialDimension: length,
-      expansionType: "LINEAR"
+      expansionType: typeExpansion
     };
 
     try {
-      const response = await fetch('http://localhost:8080/calculateExpansionSystem', {
+      const response = await fetch('https://proyectoclase.onrender.com/calculateExpansionSystem', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -52,8 +58,9 @@ const ExpansionHolder = ({ materialPicked, dataRetrievedMaterial, setMaterialRes
 
       if (response.ok) {
         const result = await response.json();
-        setCalculatedLength(result);
-        setMaterialResult(result);
+        const resultSliced = JSON.stringify(result).slice(0, 5);
+        setCalculatedLength(resultSliced);
+        setMaterialResult(resultSliced);
       } else {
         console.error('Failed to calculate expansion');
       }
@@ -67,6 +74,7 @@ const ExpansionHolder = ({ materialPicked, dataRetrievedMaterial, setMaterialRes
     <div className="expansion-holder">
       <div className="display-expansion-controls">
         <SolidWrapper
+          typeExpansion={typeExpansion}
           texturePath={texturePath}
           scaleX={scaleX}
           calculatedScale={calculatedScale} />

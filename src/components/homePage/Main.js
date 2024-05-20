@@ -9,7 +9,7 @@ const Main = ({isDark}) => {
     <main>
       <HomeMain isDark={isDark}/>
       <HowItWorks isDark={isDark}/>
-      <About />
+      <About isDark={isDark}/>
     </main>
   )
 }

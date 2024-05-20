@@ -20,9 +20,15 @@ const MainSimulator = () => {
     });
 
     const [materialResult, setMaterialResult] = useState(0);
+    const [typeExpansion, setTypeExpansion] = useState("");
+
+    const getExpansionType = (expansion) => {
+        setTypeExpansion(expansion);
+        console.log(typeExpansion);
+    }
 
     useEffect(() => {
-        fetch('http://localhost:8080/getSolidMaterials')
+        fetch('https://proyectoclase.onrender.com/getSolidMaterials')
             .then(response => response.json())
             .then(data => {
                 setMaterials(data);
@@ -101,16 +107,25 @@ const MainSimulator = () => {
         }));
     };
 
+    useEffect(() => {
+        if (typeExpansion) {
+            console.log(`Type of expansion selected: ${typeExpansion}`);
+        }
+    }, [typeExpansion]);
+
     return (
         <div>
-            <NavExpansionPicker />
+            <NavExpansionPicker getExpansionType={getExpansionType} />
             <div className="simulator-container">
-                <ElementsPicker materials={materials} onSelectMaterial={onSelectMaterial} />
-                <ExpansionHolder 
-                    materialPicked={materialPicked} 
-                    dataRetrievedMaterial={dataRetrievedMaterial} 
-                    onSliderChange={handleSliderChange} 
+                {typeExpansion ? (<ElementsPicker materials={materials} onSelectMaterial={onSelectMaterial} />) : null}
+
+                <ExpansionHolder
+                    materialPicked={materialPicked}
+                    dataRetrievedMaterial={dataRetrievedMaterial}
+                    onSliderChange={handleSliderChange}
                     setMaterialResult={setMaterialResult}
+                    materialData={materialData}
+                    typeExpansion={typeExpansion}
                 />
                 <ResultsDisplay
                     materialPicked={materialPicked}
@@ -120,7 +135,7 @@ const MainSimulator = () => {
                     onFinalTemperatureChange={handleFinalTemperatureChange}
                     onLengthChange={handleLengthChange}
                     setIsEditing={setIsEditing}
-                    materialResult={materialResult} 
+                    materialResult={materialResult}
                 />
             </div>
         </div>

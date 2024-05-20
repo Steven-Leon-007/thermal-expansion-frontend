@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ResultsDisplay = ({ materialPicked, materialData, finalTemperature, onFinalTemperatureChange, onTemperatureChange, onLengthChange, setIsEditing, materialResult }) => {
-  
+
   if (!materialPicked) {
     return;
   }
@@ -53,10 +53,9 @@ const ResultsDisplay = ({ materialPicked, materialData, finalTemperature, onFina
         <div className="results">
           <h3>Resultados</h3>
           <p>Expansión Total: {materialResult} m</p>
-          <p>Longitud Final: {length + materialResult} m</p>
+          <p>Longitud Final: {Number(length) + Number(materialResult)} m</p>
         </div>
         : null}
-
 
     </div>
   );

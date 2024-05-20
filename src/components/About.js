@@ -1,11 +1,13 @@
 import React from 'react'
 import ExpansionExample from '../assets/page_content/expansion_example.webp';
 import ExpansionFormula from '../assets/page_content/thermal_expansion_formula.webp';
+import ExpansionFormulaLight from '../assets/page_content/thermal_expansion_formula_light.webp';
 import ContractionThermic from '../assets/page_content/contraction_thermic.webp';
 import LiquidsFormula from '../assets/page_content/liquids_formula.webp'
+import LiquidsFormulaLight from '../assets/page_content/liquids_formula_light.webp'
 import ComposedSystems from '../assets/page_content/composed_systems.webp'
 
-const About = () => {
+const About = ({isDark}) => {
     return (
         <div className="about-section" id='about'>
             <h2>Acerca del Simulador</h2>
@@ -14,7 +16,7 @@ const About = () => {
                     <div className="about-text">
                         <h3>Expansión térmica de sólidos y líquidos</h3>
                         <p>Expansión térmica es el fenómeno por el cual los materiales aumentan su tamaño (longitud, área o volumen) al ser calentados. Este proceso ocurre porque las partículas que componen el material (átomos o moléculas) ganan energía cinética cuando se incrementa la temperatura, lo que provoca que ocupen más espacio.</p>
-                        <img src={ExpansionFormula} alt="Thermal Expansion formula" id='formula' />
+                        <img src={isDark ? ExpansionFormula : ExpansionFormulaLight} alt="Thermal Expansion formula" id='formula' />
                         <p>Ejemplo: En grandes estructuras, como rascacielos, se incorporan juntas de expansión para permitir el movimiento de los materiales debido a las variaciones de temperatura. Esto previene agrietamientos y fallos estructurales.</p>
                     </div>
                     <div className="about-image">
@@ -44,7 +46,7 @@ const About = () => {
                             <li><b>Expansión del Recipiente:</b> El recipiente también se expandirá, pero generalmente en menor medida comparado con el líquido.</li>
                         </ul>
                         <p>Derrame del líquido: Si el líquido se expande más de lo que el recipiente puede acomodar, puede derramarse. Esto es común en situaciones donde no hay espacio de expansión previsto para el líquido.</p>
-                        <img src={LiquidsFormula} alt="Liquid Expansion formula" id='formula' />
+                        <img src={isDark ? LiquidsFormula : LiquidsFormulaLight} alt="Liquid Expansion formula" id='formula' />
 
                     </div>
                     <div className="about-image">
