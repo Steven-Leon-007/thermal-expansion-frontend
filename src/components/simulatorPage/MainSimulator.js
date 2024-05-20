@@ -24,7 +24,6 @@ const MainSimulator = () => {
 
     const getExpansionType = (expansion) => {
         setTypeExpansion(expansion);
-        console.log(typeExpansion);
     }
 
     useEffect(() => {
@@ -106,12 +105,6 @@ const MainSimulator = () => {
             [type]: value
         }));
     };
-
-    useEffect(() => {
-        if (typeExpansion) {
-            console.log(`Type of expansion selected: ${typeExpansion}`);
-        }
-    }, [typeExpansion]);
 
     return (
         <div>
