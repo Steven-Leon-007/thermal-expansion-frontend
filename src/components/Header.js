@@ -13,9 +13,9 @@ const Header = ({ isDark, setIsDark }) => {
           </div>
           <div className="links-container">
             <ul>
-              <li><a href="#how-it-works">Como funciona</a></li>
+              <li><a href="/#how-it-works">Como funciona</a></li>
               <li><a href="/simulator">Simulador</a></li>
-              <li><a href="#about">Acerca de</a></li>
+              <li><a href="/#about">Acerca de</a></li>
               <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
             </ul>
           </div>
