@@ -38,7 +38,6 @@ const ExpansionHolder = ({ materialPicked, dataRetrievedMaterial, setMaterialRes
   const scaleX = length / originalHeight;
 
   const handleCalculateExpansion = async () => {
-    console.log(typeExpansion);
     const materialToCalc = {
       solidMaterialName: name,
       solidInitialTemperature: temperature,
