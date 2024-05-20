@@ -8,7 +8,7 @@ const HomePage = ({isDark, setIsDark}) => {
   return (
     <div className="App" data-theme={isDark ? 'dark' : 'light'}>
       <Header isDark={isDark} setIsDark={setIsDark} />
-      <Main />
+      <Main isDark={isDark}/>
       <Footer />
     </div>
   )

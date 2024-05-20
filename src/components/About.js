@@ -3,6 +3,7 @@ import ExpansionExample from '../assets/page_content/expansion_example.webp';
 import ExpansionFormula from '../assets/page_content/thermal_expansion_formula.webp';
 import ContractionThermic from '../assets/page_content/contraction_thermic.webp';
 import LiquidsFormula from '../assets/page_content/liquids_formula.webp'
+import ComposedSystems from '../assets/page_content/composed_systems.webp'
 
 const About = () => {
     return (
@@ -47,7 +48,7 @@ const About = () => {
 
                     </div>
                     <div className="about-image">
-                        <img src="https://picsum.photos/500" alt="Tercera imagen de expansión térmica" />
+                        <img src={ComposedSystems} alt="Composed systems content"/>
                     </div>
                 </div>
             </div>

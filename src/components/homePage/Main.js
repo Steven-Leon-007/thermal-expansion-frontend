@@ -3,12 +3,12 @@ import HowItWorks from './HowItWorks';
 import HomeMain from './HomeMain';
 import About from '../About';
 
-const Main = () => {
+const Main = ({isDark}) => {
 
   return (
     <main>
-      <HomeMain />
-      <HowItWorks />
+      <HomeMain isDark={isDark}/>
+      <HowItWorks isDark={isDark}/>
       <About />
     </main>
   )

@@ -19,6 +19,8 @@ const MainSimulator = () => {
         length: false
     });
 
+    const [materialResult, setMaterialResult] = useState(0);
+
     useEffect(() => {
         fetch('http://localhost:8080/getSolidMaterials')
             .then(response => response.json())
@@ -108,6 +110,7 @@ const MainSimulator = () => {
                     materialPicked={materialPicked} 
                     dataRetrievedMaterial={dataRetrievedMaterial} 
                     onSliderChange={handleSliderChange} 
+                    setMaterialResult={setMaterialResult}
                 />
                 <ResultsDisplay
                     materialPicked={materialPicked}
@@ -116,7 +119,8 @@ const MainSimulator = () => {
                     finalTemperature={materialData.finalTemperature}
                     onFinalTemperatureChange={handleFinalTemperatureChange}
                     onLengthChange={handleLengthChange}
-                    setIsEditing={setIsEditing} 
+                    setIsEditing={setIsEditing}
+                    materialResult={materialResult} 
                 />
             </div>
         </div>

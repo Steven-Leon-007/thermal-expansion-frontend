@@ -1,6 +1,7 @@
 import React from 'react';
 
-const ResultsDisplay = ({ materialPicked, materialData, finalTemperature, onFinalTemperatureChange, onTemperatureChange, onLengthChange, setIsEditing }) => {
+const ResultsDisplay = ({ materialPicked, materialData, finalTemperature, onFinalTemperatureChange, onTemperatureChange, onLengthChange, setIsEditing, materialResult }) => {
+  
   if (!materialPicked) {
     return;
   }
@@ -26,10 +27,10 @@ const ResultsDisplay = ({ materialPicked, materialData, finalTemperature, onFina
         onChange={onTemperatureChange}
         onFocus={() => setIsEditing(prev => ({ ...prev, temperature: true }))}
       />
-      <label htmlFor="temperature">Temperatura Final (°C):</label>
+      <label htmlFor="final-temperature">Temperatura Final (°C):</label>
       <input
         type="number"
-        name="temperature"
+        name="final-temperature"
         id="temperature-input"
         min={minTemperature}
         max={maxTemperature}
@@ -48,6 +49,15 @@ const ResultsDisplay = ({ materialPicked, materialData, finalTemperature, onFina
         onChange={onLengthChange}
         onFocus={() => setIsEditing(prev => ({ ...prev, length: true }))}
       />
+      {materialResult !== 0 ?
+        <div className="results">
+          <h3>Resultados</h3>
+          <p>Expansión Total: {materialResult} m</p>
+          <p>Longitud Final: {length + materialResult} m</p>
+        </div>
+        : null}
+
+
     </div>
   );
 }
