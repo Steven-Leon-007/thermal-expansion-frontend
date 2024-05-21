@@ -1,7 +1,11 @@
 .nav_expansion_picker {
-    background-color: #323232;
     display: flex;
     justify-content: space-between;
+    width: 100%;
+}
+
+.nav-picker-responsive {
+    display: none;
 }
 
 .nav_expansion_picker button {
@@ -9,6 +13,7 @@
     padding: 1rem;
     background-color: var(--buttons-background);
     font-weight: bold;
+    color: var(--color-exception);
     transition: background-color 0.3s ease-in-out;
 }
 
@@ -82,7 +87,7 @@
     height: 300px;
 }
 
-.dice-svg{
+.dice-svg {
     width: 150px;
     height: 150px;
     margin-top: 2rem;
@@ -154,6 +159,7 @@
     margin: 1rem auto;
     display: block;
     background-color: var(--buttons-background);
+    color: var(--color-exception);
     font-weight: bold;
     border: none;
     transition: background-color 0.3s ease-in-out;
@@ -206,13 +212,16 @@
     }
 
     .material-list-responsive {
-        display: inline-block;
+        width: 100%;
+        display: block;
     }
 
     .material-list-responsive select {
         margin: 1rem auto;
         padding: 0.5rem;
         width: 100%;
+        border: none;
+        border-radius: 0.3rem;
     }
 
     .results-container {
@@ -223,10 +232,32 @@
 
     .superficial-svg {
         position: relative;
-        top: 50px; 
+        top: 50px;
     }
-    .dice-svg{
-    margin-top: 10rem;
-        
+    .dice-svg {
+        margin-top: 10rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .nav-picker-responsive {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .nav-picker-responsive select {
+        width: 100%;
+        margin: 1rem auto;
+        padding: 0.5rem;
+        display: block;
+        border: none;
+        background-color: var(--buttons-background);
+        color: var(--color-exception);
+        border-radius: 0.3rem;
+    }
+
+    .nav_expansion_picker button {
+        display: none;
     }
 }
