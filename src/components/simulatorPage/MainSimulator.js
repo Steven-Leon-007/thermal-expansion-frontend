@@ -3,10 +3,13 @@ import NavExpansionPicker from './NavExpansionPicker';
 import ElementsPicker from './ElementsPicker';
 import ResultsDisplay from './ResultsDisplay';
 import ExpansionHolder from './ExpansionHolder';
+import ResultComposed from './ResultComposed';
 
 const MainSimulator = () => {
     const [materials, setMaterials] = useState([]);
+    const [liquids, setLiquids] = useState([]);
     const [materialPicked, setMaterialPicked] = useState(null);
+    const [liquidPicked, setLiquidPicked] = useState(null);
     const [materialData, setMaterialData] = useState({
         temperature: "",
         finalTemperature: "",
@@ -20,6 +23,7 @@ const MainSimulator = () => {
     });
 
     const [materialResult, setMaterialResult] = useState(0);
+    const [composedResult, setComposedResult] = useState([]);
     const [typeExpansion, setTypeExpansion] = useState("");
 
     const getExpansionType = (expansion) => {
@@ -27,6 +31,7 @@ const MainSimulator = () => {
     }
 
     useEffect(() => {
+        //TODO: remind to change this
         fetch('https://proyectoclase.onrender.com/getSolidMaterials')
             .then(response => response.json())
             .then(data => {
@@ -35,11 +40,40 @@ const MainSimulator = () => {
             .catch(error => {
                 console.error('Error al obtener materiales:', error);
             });
-    }, []);
+
+        if (typeExpansion === "COMPUESTOS") {
+            fetch('https://proyectoclase.onrender.com/getLiquidMaterials')
+                .then(response => response.json())
+                .then(data => {
+                    setLiquids(data);
+                })
+                .catch(error => {
+                    console.error('Error al obtener materiales:', error);
+                });
+        }
+    }, [typeExpansion]);
 
     const onSelectMaterial = (material) => {
         setMaterialPicked(material);
     }
+
+    const onSelectLiquid = (liquid) => {
+        const updatedLiquid = {
+            ...liquid,
+            liquidName: liquid.name,
+            liquidExpansionCoefficient: liquid.thermalExpansionCoefficient,
+            liquidMaxTemperature: liquid.maxTemperature,
+            liquidMinTemperature: liquid.minTemperature,
+        };
+
+        delete updatedLiquid.name;
+        delete updatedLiquid.thermalExpansionCoefficient;
+        delete updatedLiquid.maxTemperature;
+        delete updatedLiquid.minTemperature;
+
+        setLiquidPicked(updatedLiquid);
+    }
+
 
     const dataRetrievedMaterial = useCallback((materialData) => {
         if (!isEditing.temperature) {
@@ -110,26 +144,44 @@ const MainSimulator = () => {
         <div>
             <NavExpansionPicker getExpansionType={getExpansionType} />
             <div className="simulator-container">
-                {typeExpansion ? (<ElementsPicker materials={materials} onSelectMaterial={onSelectMaterial} />) : null}
+                {typeExpansion ?
+                    (<ElementsPicker
+                        materials={materials}
+                        onSelectMaterial={onSelectMaterial}
+                        liquids={liquids}
+                        onSelectLiquid={onSelectLiquid}
+                        typeExpansion={typeExpansion}
+                    />)
+                    : null}
 
                 <ExpansionHolder
                     materialPicked={materialPicked}
                     dataRetrievedMaterial={dataRetrievedMaterial}
                     onSliderChange={handleSliderChange}
                     setMaterialResult={setMaterialResult}
+                    setComposedResult={setComposedResult}
                     materialData={materialData}
                     typeExpansion={typeExpansion}
+                    liquidPicked={liquidPicked}
                 />
-                <ResultsDisplay
-                    materialPicked={materialPicked}
-                    materialData={materialData}
-                    onTemperatureChange={handleTemperatureChange}
-                    finalTemperature={materialData.finalTemperature}
-                    onFinalTemperatureChange={handleFinalTemperatureChange}
-                    onLengthChange={handleLengthChange}
-                    setIsEditing={setIsEditing}
-                    materialResult={materialResult}
-                />
+                {typeExpansion === "COMPUESTOS" ? (
+                    <ResultComposed
+                        materialPicked={materialPicked}
+                        liquidPicked={liquidPicked}
+                        composedResult={composedResult}
+                    />
+                ) : (
+                    <ResultsDisplay
+                        materialPicked={materialPicked}
+                        materialData={materialData}
+                        onTemperatureChange={handleTemperatureChange}
+                        finalTemperature={materialData.finalTemperature}
+                        onFinalTemperatureChange={handleFinalTemperatureChange}
+                        onLengthChange={handleLengthChange}
+                        setIsEditing={setIsEditing}
+                        materialResult={materialResult}
+                    />
+                )}
             </div>
         </div>
     );

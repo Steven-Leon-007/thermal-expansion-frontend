@@ -37,6 +37,10 @@
     padding: 1rem;
 }
 
+.nav-expansion-picker {
+    position: relative;
+}
+
 .nav-expansion-picker,
 .results-container {
     background-color: var(--containers-background-color);
@@ -73,6 +77,27 @@
 
 .material-list-responsive {
     display: none;
+}
+
+
+.liquids-exception {
+    position: absolute;
+    top: 0;
+    display: flex;
+    left: 100%;
+    width: 300%;
+    justify-content: space-evenly;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+}
+
+.liquids-exception select{
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.3rem;
+    background-color: var(--buttons-background);
+    color: var(--color-exception);
 }
 
 .expansion-holder {
@@ -145,6 +170,10 @@
     height: 40%;
 }
 
+.composed-sliders{
+    position: unset !important;
+}
+
 .final-temperature {
     right: 25%;
 }
@@ -214,6 +243,12 @@
     .material-list-responsive {
         width: 100%;
         display: block;
+    }
+
+    .liquids-exception{
+        position: relative;
+        left: 0;
+        padding: 0;
     }
 
     .material-list-responsive select {

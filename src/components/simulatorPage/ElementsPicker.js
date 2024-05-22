@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
-const ElementsPicker = ({ materials, onSelectMaterial }) => {
+const ElementsPicker = ({ materials, onSelectMaterial, liquids, onSelectLiquid, typeExpansion }) => {
     const [selectedMaterial, setSelectedMaterial] = useState(null);
+    const [selectedLiquid, setSelectedLiquid] = useState(null);
 
     const handleSelectMaterial = (material) => {
         setSelectedMaterial(material);
@@ -15,10 +16,17 @@ const ElementsPicker = ({ materials, onSelectMaterial }) => {
         onSelectMaterial(selectedMaterial);
     };
 
+    const handleLiquidChange = (event) => {
+        const selectedLiquidName = event.target.value;
+        const selectedLiquid = liquids.find(liquid => liquid.name === selectedLiquidName);
+        setSelectedLiquid(selectedLiquid);
+        onSelectLiquid(selectedLiquid);
+    };
+
     return (
         <div className="nav-expansion-picker elements-picker">
             <div className="material-list">
-            <h2>Lista de materiales:</h2>
+                <h3>Lista de materiales solidos:</h3>
                 {materials.map((material, index) => (
                     <div
                         key={index}
@@ -29,7 +37,7 @@ const ElementsPicker = ({ materials, onSelectMaterial }) => {
                 ))}
             </div>
             <div className="material-list-responsive">
-                <h2>Lista de materiales:</h2>
+                <h3>Lista de materiales solidos:</h3>
                 <select onChange={handleSelectChange}>
                     <option value="">Seleccione un material</option>
                     {materials.map((material, index) => (
@@ -39,8 +47,21 @@ const ElementsPicker = ({ materials, onSelectMaterial }) => {
                     ))}
                 </select>
             </div>
+            {liquids.length !== 0 && typeExpansion === "COMPUESTOS" ? (
+                <div className="material-list-responsive liquids-exception">
+                    <h3>Lista de materiales liquidos:</h3>
+                    <select onChange={handleLiquidChange}>
+                        <option value="">Seleccione un material</option>
+                        {liquids.map((liquid, index) => (
+                            <option key={index} value={liquid.name}>
+                                {liquid.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            ) : null}
         </div>
     )
 }
 
-export default ElementsPicker
+export default ElementsPicker;

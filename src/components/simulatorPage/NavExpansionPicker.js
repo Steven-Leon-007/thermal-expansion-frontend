@@ -19,6 +19,23 @@ const NavExpansionPicker = ({ getExpansionType }) => {
     getExpansionType(expansion);
   };
 
+  const handleSelectChange = (event) => {
+    const selected = event.target.value;
+    let expansion = '';
+
+    if (selected.includes('Lineal')) {
+      expansion = 'LINEAR';
+    } else if (selected.includes('Superficial')) {
+      expansion = 'SUPERFICIAL';
+    } else if (selected.includes('Volumetrica')) {
+      expansion = 'VOLUMETRIC';
+    } else if (selected.includes('Compuestos')) {
+      expansion = 'COMPUESTOS';
+    }
+    getExpansionType(expansion);
+
+  };
+
   return (
     <div className='nav_expansion_picker'>
       <button onClick={handleChangeExpansion}>Expansión Lineal</button>
@@ -27,7 +44,7 @@ const NavExpansionPicker = ({ getExpansionType }) => {
       <button onClick={handleChangeExpansion}>Sistemas Compuestos</button>
 
       <div className="nav-picker-responsive">
-        <select name="element-picker" id="element-picker-id" onChange={handleChangeExpansion}>
+        <select name="element-picker" id="element-picker-id" onChange={handleSelectChange}>
           <option value="">Seleccione un tipo de expansión</option>
           <option value="Expansión Lineal">Expansión Lineal</option>
           <option value="Expansión Superficial">Expansión Superficial</option>
