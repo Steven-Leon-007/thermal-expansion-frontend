@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const SlidersWrapper = ({ onValuesChange, materialPicked }) => {
+const SlidersWrapper = ({ onValuesChange, materialPicked, typeExpansion }) => {
     const { minTemperature, maxTemperature } = materialPicked;
     const [temperature, setTemperature] = useState(0);
     const [finalTemperature, setFinalTemperature] = useState(0);
@@ -33,6 +33,20 @@ const SlidersWrapper = ({ onValuesChange, materialPicked }) => {
         onValuesChange({ temperature, finalTemperature, length: newLength });
     };
 
+    const getLabelAndUnit = () => {
+        switch (typeExpansion) {
+            case 'SUPERFICIAL':
+                return { label: 'Área Inicial (Ai)', unit: 'm²' };
+            case 'VOLUMETRIC':
+                return { label: 'Volumen Inicial (Vi)', unit: 'm³' };
+            case 'LINEAR':
+            default:
+                return { label: 'Longitud Inicial (Li)', unit: 'm' };
+        }
+    };
+
+    const { label, unit } = getLabelAndUnit();
+
     return (
         <div className="slider-component">
             <div className="slider-container">
@@ -62,8 +76,8 @@ const SlidersWrapper = ({ onValuesChange, materialPicked }) => {
                 />
             </div>
             <div className="slider-container">
-                <label htmlFor="length-slider">Longitud Inicial (Li)<br />
-                    {length} m
+                <label htmlFor="length-slider">{label}<br />
+                    {length} {unit}
                 </label>
                 <input
                     id="length-slider"

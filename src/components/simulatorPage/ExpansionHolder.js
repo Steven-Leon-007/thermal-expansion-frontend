@@ -46,7 +46,6 @@ const ExpansionHolder = ({ materialPicked, dataRetrievedMaterial, setMaterialRes
     ({ liquidTexturePath, liquidName } = liquidPicked);
   }
 
-  console.log(liquidName);
   const originalHeight = 500;
   const scaleX = length / originalHeight;
   const scaleXLiquid = liquidLength / originalHeight;
@@ -133,6 +132,8 @@ const ExpansionHolder = ({ materialPicked, dataRetrievedMaterial, setMaterialRes
           <SlidersWrapper
             onValuesChange={onValuesChange}
             materialPicked={materialPicked}
+            typeExpansion={typeExpansion}
+
           />
         )
         }
